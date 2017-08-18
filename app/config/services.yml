@@ -30,6 +30,9 @@ services:
         tags: ['controller.service_arguments']
 
     # add more services, or override services that need manual wiring
-    # AppBundle\Service\ExampleService:
-    #     arguments:
-    #         $someArgument: 'some_value'
+    AppBundle\Structural\DataMapper\CommonMapper:
+        abstract:  true
+        arguments: ['@doctrine.orm.entity_manager']
+    app.structural.data_mapper.contact_request:
+        class: AppBundle\Structural\DataMapper\ContactRequestMapper
+        parent: AppBundle\Structural\DataMapper\CommonMapper
