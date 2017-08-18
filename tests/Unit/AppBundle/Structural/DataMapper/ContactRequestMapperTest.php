@@ -3,7 +3,9 @@
 namespace Tests\Unit\AppBundle\Structural\DataMapper;
 
 use AppBundle\Entity\ContactRequest;
+use AppBundle\Repository\ContactRequestRepository;
 use AppBundle\Structural\DataMapper\ContactRequestMapper as SUT;
+use AppBundle\Structural\DataMapper\ContactRequestMapper;
 use Doctrine\ORM\EntityManagerInterface;
 use PHPUnit\Framework\TestCase;
 
@@ -58,5 +60,42 @@ class ContactRequestMapperTest extends TestCase
             ->with($this->equalTo($contactRequestToPersist))
         ;
         $this->contactRequestMapper->save($contactRequestToPersist, true);
+    }
+
+    /**
+     * @test
+     */
+    public function acceptInvitationReturnsFalse()
+    {
+        $this->em
+            ->expects($this->once())
+            ->method('getRepository')
+            ->with('AppBundle:ContactRequest')
+            ->willReturn($this->createMock(ContactRequestRepository::class))
+        ;
+        $actual = $this->contactRequestMapper->acceptInvitation(1);
+
+        $this->assertFalse($actual);
+    }
+
+    /**
+     * @test
+     */
+    public function acceptInvitationReturnsTrue()
+    {
+        $contactRequestRepository =  $this->createMock(ContactRequestRepository::class);
+        $contactRequestRepository->expects($this->once())
+            ->method('find')
+            ->willReturn(new ContactRequest())
+        ;
+        $this->em
+            ->expects($this->once())
+            ->method('getRepository')
+            ->with('AppBundle:ContactRequest')
+            ->willReturn($contactRequestRepository)
+        ;
+        $actual = $this->contactRequestMapper->acceptInvitation(1);
+
+        $this->asserttrue($actual);
     }
 }

@@ -10,7 +10,7 @@ abstract class CommonMapper
      * [private description]
      * @var EntityManagerInterface
      */
-    private $em;
+    protected $em;
 
     public function __construct(EntityManagerInterface $em)
     {

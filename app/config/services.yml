@@ -36,5 +36,8 @@ services:
     app.structural.data_mapper.contact_request:
         class: AppBundle\Structural\DataMapper\ContactRequestMapper
         parent: AppBundle\Structural\DataMapper\CommonMapper
+        autowire: true
+        autoconfigure: false
+        public: true
     AppBundle\Service\ResponseArrayBuilder:
         public: true
