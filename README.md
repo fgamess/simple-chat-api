@@ -22,7 +22,7 @@ Prerequisites
 - curl installed on the host machine or POSTMAN
 - Docker compose installed
 
-###### Set up docker stack
+###### Set up the docker stack
 
 1. From the root folder of the application :
 
@@ -91,7 +91,7 @@ Exit from the bash
 
     composer install
 
-###### Set up database
+###### Set up the database
 
 1. Create the database (it should already exist but do it to be sure) :
 
