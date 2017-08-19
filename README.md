@@ -7,7 +7,7 @@ A Symfony project created on August 17, 2017, 9:26 pm.
 - [Prerequisites](https://github.com/FGamess/simple-chat-api#prerequisites)
   - [Tools required](https://github.com/FGamess/simple-chat-api#tools-required)
   - [Set up the docker stack](https://github.com/FGamess/simple-chat-api#set-up-the-docker-stack)
-  - [Configure database host](https://github.com/FGamess/simple-chat-api#configure-database-host)
+  - [Configure the database host in Symfony](https://github.com/FGamess/simple-chat-api#configure-the-database-host-in-symfony)
   - [Setting www-data as owner of the files](https://github.com/FGamess/simple-chat-api#setting-www-data-as-owner-of-the-files)
   - [Install the vendors](https://github.com/FGamess/simple-chat-api#install-the-vendors)
   - [Set up the database](https://github.com/FGamess/simple-chat-api#set-up-the-database)
@@ -50,7 +50,7 @@ If docker-sync is already installed on your Mac, just run this command in anothe
     docker-sync-stack start
 You only need this command. It will start the containers (php7, mariadb, nginx). Keep this terminal windows open.
 
-###### Configure database host in Symfony
+###### Configure the database host in Symfony
 
 1. Find the ip address of the mariadb container
 
