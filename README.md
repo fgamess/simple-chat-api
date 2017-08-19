@@ -16,7 +16,7 @@ A Symfony project created on August 17, 2017, 9:26 pm.
 Prerequisites
 -------------
 
-###### Tools required :
+###### Tools required
 
 - Docker CE for Windows, Docker CE for Linux or Docker CE for MAC (require docker-sync) installed
 - curl installed on the host machine or POSTMAN
