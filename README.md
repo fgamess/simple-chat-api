@@ -1,18 +1,28 @@
-Simple Chat API
-===============
+# Simple Chat API
+-----------------
 
 A Symfony project created on August 17, 2017, 9:26 pm.
+
+## Table of contents
+- [Prerequisites](https://github.com/FGamess/simple-chat-api#prerequisites)
+  - [Tools required](https://github.com/FGamess/simple-chat-api#tools-required)
+  - [Set up the docker stack](https://github.com/FGamess/simple-chat-api#set-up-the-docker-stack)
+  - [Configure database host](https://github.com/FGamess/simple-chat-api#configure-database-host)
+  - [Setting www-data as owner of the files](https://github.com/FGamess/simple-chat-api#setting-www-data-as-owner-of-the-files)
+  - [Install the vendors](https://github.com/FGamess/simple-chat-api#install-the-vendors)
+  - [Set up the database](https://github.com/FGamess/simple-chat-api#set-up-the-database)
+
 
 Prerequisites
 -------------
 
-###### Ensure you have the following prerequisites :
+###### Tools required :
 
 - Docker CE for Windows, Docker CE for Linux or Docker CE for MAC (require docker-sync) installed
 - curl installed on the host machine or POSTMAN
 - Docker compose installed
 
-###### Set up environment
+###### Set up docker stack
 
 1. From the root folder of the application :
 
@@ -40,23 +50,26 @@ If docker-sync is already installed on your Mac, just run this command in anothe
     docker-sync-stack start
 You only need this command. It will start the containers (php7, mariadb, nginx). Keep this terminal windows open.
 
-3. Configure database host in Symfony, inside parameters.yml file :
+###### Configure database host in Symfony
 
-First run this command in a terminal windows :
+1. Find the ip address of the mariadb container
+
+First run this command in a terminal windows
 
     docker inspect --format '' $(docker ps -f name=db -q)
 
-If there is no output, that means the mariadb container is not runing. Just run :
+If there is no output, that means the mariadb container is not runing. Just run
 
     docker-compose start
     docker inspect --format '' $(docker ps -f name=db -q)
 
 On the output look for the "NetworkSettings" key, then "Networks", then "docker_default" and look for "IPAddress".
-Copy and past the value in database_host parameter in parameters.yml
 
-4. install the vendors :
+2. Copy and past the value in database_host parameter in parameters.yml
 
-set www-data user and group as owner of the files inside the project. Connect to the php container with the root user using this command
+###### Setting www-data as owner of the files.
+
+Set www-data user and group as owner of the files inside the project. Connect to the php container with the root user using this command
 
     docker exec -it chat_api_php bash
 When you are in the bash run
@@ -65,16 +78,27 @@ When you are in the bash run
 Exit from the bash
 
     exit
-Connect to the php container with the www-data user
+
+###### Install the vendors
+
+1. Connect to the php container with the www-data user.
+
 
     docker exec -itu www-data chat_api_php bash
-Then install the vendors with composer (already installed in the php container)
+
+2. Then install the vendors with composer (already installed in the php container)
+
 
     composer install
 
-5. Set up the database :
+###### Set up database
 
-Create the database and the schema
+1. Create the database (it should already exist but do it to be sure) :
+
 
     bin/console d:d:c
+
+2. Create the database schema
+
+
     bin/console d:s:c
