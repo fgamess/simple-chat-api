@@ -11,6 +11,8 @@ A Symfony project created on August 17, 2017, 9:26 pm.
   - [Setting www-data as owner of the files](https://github.com/FGamess/simple-chat-api#setting-www-data-as-owner-of-the-files)
   - [Install the vendors](https://github.com/FGamess/simple-chat-api#install-the-vendors)
   - [Set up the database](https://github.com/FGamess/simple-chat-api#set-up-the-database)
+- [How to use](https://github.com/FGamess/simple-chat-api#how-to-use)
+  - [Consume the API using CURL](https://github.com/FGamess/simple-chat-api#consume-the-api-using-curl)
 
 
 Prerequisites
@@ -107,7 +109,7 @@ Exit from the bash
 How to use
 ----------
 
-###### Consume the API using curl
+###### Consume the API using CURL
 
 1. Send invitation
 
