@@ -102,3 +102,15 @@ Exit from the bash
 
 
     bin/console d:s:c
+
+
+How to use
+----------
+
+###### Consume the API using curl
+
+1. Send invitation
+
+In a command shell run
+
+    curl -XPOST -H 'Content-Type:application/json' -H 'Accept: application/json' --data-binary @src/AppBundle/DataFixtures/Json/send-invitation.json http://localhost:8000/app_dev.php/send-invitation -v -s
