@@ -13,6 +13,8 @@ A Symfony project created on August 17, 2017, 9:26 pm.
   - [Set up the database](https://github.com/FGamess/simple-chat-api#set-up-the-database)
 - [How to use](https://github.com/FGamess/simple-chat-api#how-to-use)
   - [Consume the API using CURL](https://github.com/FGamess/simple-chat-api#consume-the-api-using-curl)
+- [Testing](https://github.com/FGamess/simple-chat-api#testing)
+  - [Run the tests](https://github.com/FGamess/simple-chat-api#run-the-tests)
 
 
 Prerequisites
@@ -116,3 +118,30 @@ How to use
 In a command shell run
 
     curl -XPOST -H 'Content-Type:application/json' -H 'Accept: application/json' --data-binary @src/AppBundle/DataFixtures/Json/send-invitation.json http://localhost:8000/app_dev.php/send-invitation -v -s
+	
+	
+Testing
+-------
+
+###### Run the tests
+
+1. Unit tests
+
+Just run
+
+
+    vendor/bin/phpunit tests/Unit
+
+2. Functional tests
+
+Just run
+
+
+    vendor/bin/phpunit tests/Functional
+
+3. All tests
+
+Just run
+
+
+    vendor/bin/phpunit tests
