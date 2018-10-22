@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Repository;
+use App\Entity\ContactRequest;
 use Doctrine\ORM\EntityManagerInterface;
 
 /**
@@ -27,5 +28,10 @@ class ContactRequestRepository
     {
         $this->em->persist($entity);
         $this->em->flush();
+    }
+
+    public function find(int $id)
+    {
+        return $this->em->find(ContactRequest::class, $id);
     }
 }

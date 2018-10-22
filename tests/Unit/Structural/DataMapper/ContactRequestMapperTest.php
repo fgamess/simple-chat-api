@@ -4,62 +4,23 @@ namespace Tests\Unit\Structural\DataMapper;
 
 use App\Entity\ContactRequest;
 use App\Repository\ContactRequestRepository;
-use App\Structural\DataMapper\ContactRequestMapper as SUT;
 use App\Structural\DataMapper\ContactRequestMapper;
-use Doctrine\ORM\EntityManagerInterface;
 use PHPUnit\Framework\TestCase;
 
 class ContactRequestMapperTest extends TestCase
 {
-    /**
-     * [public description]
-     * @var ContactRequestMapper
-     */
-    public $contactRequestMapper;
+    /**  @var ContactRequestMapper $sut */
+    public $sut;
 
     /**
-     * [private description]
-     * @var EntityManagerInterface
+     * @var ContactRequestRepository $contactRequestRepository
      */
-    private $em;
+    private $contactRequestRepository;
 
     public function setUp()
     {
-        $this->em = $this->createMock(EntityManagerInterface::class);
-        $this->contactRequestMapper = new SUT($this->em);
-    }
-
-    /**
-     * @test
-     */
-    public function saveFunctionPersistsWithoutFlushing()
-    {
-        $contactRequestToPersist = new ContactRequest();
-        $this->em
-            ->expects($this->once())
-            ->method('persist')
-            ->with($this->equalTo($contactRequestToPersist))
-        ;
-        $this->contactRequestMapper->save($contactRequestToPersist);
-    }
-
-    /**
-     * @test
-     */
-    public function saveFunctionPersistsAndFlush()
-    {
-        $contactRequestToPersist = new ContactRequest();
-        $this->em
-            ->expects($this->once())
-            ->method('persist')
-            ->with($this->equalTo($contactRequestToPersist))
-        ;
-        $this->em
-            ->expects($this->once())
-            ->method('flush')
-            ->with($this->equalTo($contactRequestToPersist))
-        ;
-        $this->contactRequestMapper->save($contactRequestToPersist, true);
+        $this->contactRequestRepository = $this->createMock(ContactRequestRepository::class);
+        $this->sut = new ContactRequestMapper($this->contactRequestRepository);
     }
 
     /**
@@ -67,13 +28,14 @@ class ContactRequestMapperTest extends TestCase
      */
     public function acceptInvitationReturnsFalse()
     {
-        $this->em
+        $id = rand(0, 100);
+        $this->contactRequestRepository
             ->expects($this->once())
-            ->method('getRepository')
-            ->with('AppBundle:ContactRequest')
-            ->willReturn($this->createMock(ContactRequestRepository::class))
+            ->method('find')
+            ->with($id)
+            ->willReturn(null)
         ;
-        $actual = $this->contactRequestMapper->acceptInvitation(1);
+        $actual = $this->sut->acceptInvitation($id);
 
         $this->assertFalse($actual);
     }
@@ -83,18 +45,15 @@ class ContactRequestMapperTest extends TestCase
      */
     public function acceptInvitationReturnsTrue()
     {
-        $contactRequestRepository =  $this->createMock(ContactRequestRepository::class);
-        $contactRequestRepository->expects($this->once())
-            ->method('find')
-            ->willReturn(new ContactRequest())
-        ;
-        $this->em
+        $id = rand(0, 100);
+        $contactRequest = new ContactRequest();
+        $this->contactRequestRepository
             ->expects($this->once())
-            ->method('getRepository')
-            ->with('AppBundle:ContactRequest')
-            ->willReturn($contactRequestRepository)
+            ->method('find')
+            ->with($id)
+            ->willReturn($contactRequest)
         ;
-        $actual = $this->contactRequestMapper->acceptInvitation(1);
+        $actual = $this->sut->acceptInvitation($id);
 
         $this->asserttrue($actual);
     }
