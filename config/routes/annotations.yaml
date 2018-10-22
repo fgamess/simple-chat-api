@@ -1,0 +1,8 @@
+controllers:
+    resource: ../../src/Controller/
+    type: annotation
+
+users:
+    type:     rest
+    host: localhost
+    resource: App\Controller\UserController

@@ -100,7 +100,7 @@ Exit from the bash
 1. Create the database (it should already exist but do it to be sure) :
 
 
-    bin/console d:d:c
+    bin/console d:d:c --if-not-exists
 
 2. Create the database schema
 
@@ -117,7 +117,7 @@ How to use
 
 In a command shell run
 
-    curl -XPOST -H 'Content-Type:application/json' -H 'Accept: application/json' --data-binary @src/AppBundle/DataFixtures/Json/send-invitation.json http://localhost:8000/app_dev.php/send-invitation -v -s
+    curl -XPOST -H 'Content-Type:application/json' -H 'Accept: application/json' --data-binary @src/DataFixtures/Json/send-invitation.json http://localhost:8000/send-invitation -v -s
 	
 	
 Testing
