@@ -12,9 +12,6 @@ framework:
         enabled: true
     http_method_override: true
     validation: { enable_annotations: true }
-    templating:
-        engines: ['twig']
-
     #esi: true
     #fragments: true
     php_errors:
